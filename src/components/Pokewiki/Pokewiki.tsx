@@ -1,4 +1,5 @@
 import React from 'react'
+import PokeSearchResults from '../PokeSearchResults/PokeSearchResults'
 import './Pokewiki.css'
 
 const Pokewiki = () =>{
@@ -8,7 +9,7 @@ const Pokewiki = () =>{
                 <p>List Of Pokemons</p>
             </div> 
             <div className="pokesearchresult-container">
-                <p>Search Result</p>
+                <PokeSearchResults/>
             </div>
         </div>
     )
