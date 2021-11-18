@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# PokeWiki
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/cf75fcee-7b48-4411-b5e3-abb51d57bdd4/deploy-status)](https://app.netlify.com/sites/pokewiki-react/deploys)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
