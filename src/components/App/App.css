@@ -1,3 +1,13 @@
 body{
-    background-color: aqua;
+    background-color: #dbf6e9;
+    color: #1624447;
+}
+
+.App{
+    text-align: center;
+}
+
+h1{
+    font-size: 57px;
+    font-family: "Press Start 2P",cursive;
 }
