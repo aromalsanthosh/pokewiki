@@ -3,7 +3,7 @@ import Pokewiki from "../Pokewiki/Pokewiki";
 import { pokemonData } from "../../data/pokemonData";
 import './App.css'
 import { PokemonSchema, PokemonSpritesSchema, UnpatchedPokemonSchema } from "../../types/pokemonSchema";
-
+import PokeLogo from "../../assets/logo.png";
 //interface AppState (general convention name of component followed by state)
 
 interface AppState {
@@ -52,7 +52,7 @@ class App extends React.Component <any,AppState>{
         //Patch the stringified pokemon sprites
         const patchedPokemons:PokemonSchema[] = this.patchPokemonData(pokemonData);
         //console.log("Patched pokemons : ", patchedPokemons);
-        
+
         //Update the state with patched pokemons
         this.setState({
             allPokemon: patchedPokemons,
@@ -63,7 +63,8 @@ class App extends React.Component <any,AppState>{
     render(){
         return(
         <div className="App">
-            <h1>PokeWiki</h1>
+            {/* <h1>PokeWiki</h1> */}
+            <img className="logo" src={PokeLogo} alt="logo" />
             <Pokewiki/>
         </div>
         )
