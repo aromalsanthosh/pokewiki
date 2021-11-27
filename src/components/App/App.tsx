@@ -22,7 +22,7 @@ class App extends React.Component <any,AppState>{
         selectedPokemon: undefined
     }
     componentDidMount(){
-        //const pokeData = pokemonData; 
+        const pokeData = pokemonData; 
     }
     render(){
         return(
