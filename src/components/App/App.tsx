@@ -8,9 +8,9 @@ import { PokemonSchema, PokemonSpritesSchema, UnpatchedPokemonSchema } from "../
 
 interface AppState {
     searchField: string;
-    allPokemon: any;
-    searchPokemons: any;
-    selectedPokemon: any;
+    allPokemon: PokemonSchema[];
+    searchPokemons: PokemonSchema[];
+    selectedPokemon: PokemonSchema | undefined;
 }
                                  //prop,state type
 class App extends React.Component <any,AppState>{
@@ -22,7 +22,7 @@ class App extends React.Component <any,AppState>{
         selectedPokemon: undefined
     }
 
-    patchPokemonData = (pokemons : UnpatchedPokemonSchema[]):Pok => {
+    patchPokemonData = (pokemons : UnpatchedPokemonSchema[]) => {
         const patchedPokemons = pokemons.map((pokemon) => {
             let parsedSprites: PokemonSpritesSchema = {
                 normal: undefined,
@@ -49,8 +49,15 @@ class App extends React.Component <any,AppState>{
     }
 
     componentDidMount(){
-        const pokeData = pokemonData;
-        console.log(pokeData);
+        //Patch the stringified pokemon sprites
+        const patchedPokemons:PokemonSchema[] = this.patchPokemonData(pokemonData);
+        //console.log("Patched pokemons : ", patchedPokemons);
+        
+        //Update the state with patched pokemons
+        this.setState({
+            allPokemon: patchedPokemons,
+            searchPokemons: patchedPokemons
+        });
     }
 
     render(){
