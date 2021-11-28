@@ -1,10 +1,17 @@
 import React from 'react'
 import './PokeCard.css'
-function PokeCard(props: any) {
+
+interface PokeCardProps {
+    spriteUrl?: string;
+    name: string;
+}
+
+function PokeCard({spriteUrl, name}: PokeCardProps) {
     return (
         <div className="pokecard">
             {/* Add Image Here */}
-            <p>{props.name}</p>
+            <img className="pokemon-sprite" src={spriteUrl} alt="pokemon" />
+            <p>{name}</p>
         </div>
     )
 }

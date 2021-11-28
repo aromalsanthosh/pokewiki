@@ -19,3 +19,7 @@
     transform: scale(1.05);
     background-color: rgb(233, 162, 32);
 }
+.pokemon-sprite{
+    height: 85px;
+    width: 85px;
+}

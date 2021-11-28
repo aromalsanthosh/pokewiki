@@ -6,57 +6,55 @@ import { PokemonSchema, PokemonSpritesSchema, UnpatchedPokemonSchema } from "../
 import PokeLogo from "../../assets/logo.png";
 //interface AppState (general convention name of component followed by state)
 
-interface AppState {
+export interface AppState {
     searchField: string;
-    allPokemon: PokemonSchema[];
-    searchPokemons: PokemonSchema[];
+    allPokemons: PokemonSchema[];
+    searchedPokemons: PokemonSchema[];
     selectedPokemon: PokemonSchema | undefined;
 }
-                                 //prop,state type
-class App extends React.Component <any,AppState>{
 
+class App extends React.Component<any, AppState> {
     state = {
         searchField: "",
-        allPokemon: [],
-        searchPokemons: [],
-        selectedPokemon: undefined
-    }
+        allPokemons: [],
+        searchedPokemons: [],
+        selectedPokemon: undefined,
+    };
 
-    patchPokemonData = (pokemons : UnpatchedPokemonSchema[]) => {
+    patchPokemonData = (pokemons: UnpatchedPokemonSchema[]) => {
         const patchedPokemons = pokemons.map((pokemon) => {
             let parsedSprites: PokemonSpritesSchema = {
                 normal: undefined,
-                animated: undefined
+                animated: undefined,
             };
 
-            try{
-                parsedSprites = pokemon.sprites &&  JSON.parse(pokemon.sprites);
-            }
-            catch(e){
-                console.log("Exception while parsing the sprites : ", e);
+            try {
+                parsedSprites = pokemon.sprites && JSON.parse(pokemon.sprites);
+            } catch (e) {
+                console.log("Exception while parsing sprites: ", e);
             }
 
             const patchedPokemon: PokemonSchema = {
                 ...pokemon,
-                sprites: parsedSprites
+                sprites: parsedSprites,
             };
 
             return patchedPokemon;
         });
 
         return patchedPokemons;
-        
-    }
+    };
 
-    componentDidMount(){
-        //Patch the stringified pokemon sprites
-        const patchedPokemons:PokemonSchema[] = this.patchPokemonData(pokemonData);
-        //console.log("Patched pokemons : ", patchedPokemons);
+    componentDidMount() {
+        // patch the stringified pokemons
+        const patchedPokemons: PokemonSchema[] = this.patchPokemonData(
+            pokemonData
+        );
 
-        //Update the state with patched pokemons
+        // Update the state with patched pokemons
         this.setState({
-            allPokemon: patchedPokemons,
-            searchPokemons: patchedPokemons
+            allPokemons: patchedPokemons,
+            searchedPokemons: patchedPokemons,
         });
     }
 
@@ -65,7 +63,9 @@ class App extends React.Component <any,AppState>{
         <div className="App">
             {/* <h1>PokeWiki</h1> */}
             <img className="logo" src={PokeLogo} alt="logo" />
-            <Pokewiki/>
+            <Pokewiki
+                searchedPokemons={this.state.searchedPokemons}
+            />
         </div>
         )
     }
