@@ -16,3 +16,27 @@ h1{
     margin-top: 2vh;
     margin-bottom: 3vh;
 }
+
+.footer-container{
+    display: flex;
+    justify-content: center;
+    
+    margin: 0;
+    
+}
+
+.footer-text{
+    font-size: 20px;
+    font-family: monospace;
+    color: #000000;
+    margin: 10px;
+    text-align: center;
+}
+
+.footer-link{
+    color: #346ABD;
+}
+
+.footer-link:hover{
+    color: #F40453;
+}
