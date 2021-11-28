@@ -58,6 +58,30 @@ class App extends React.Component<any, AppState> {
         });
     }
 
+    handleInputChange = (inputValue : string)=>{
+        //console.log(`input value from App.tsx : ${inputValue}`);
+
+        //filter search results
+        const { allPokemons } = this.state;
+
+        const searchedPokemons = allPokemons.filter(
+            (pokemon: PokemonSchema)=>{
+                return(
+                    pokemon.name &&
+                    pokemon.name
+                        .toLowerCase()
+                        .includes(inputValue.toLowerCase())
+                );
+            }
+        );
+        this.setState(
+            {
+                searchField: inputValue,
+                searchedPokemons: searchedPokemons
+            });
+        
+    }
+
     render(){
         return(
         <div className="App">
@@ -65,6 +89,7 @@ class App extends React.Component<any, AppState> {
             <img className="logo" src={PokeLogo} alt="logo" />
             <Pokewiki
                 searchedPokemons={this.state.searchedPokemons}
+                onInputChange = {this.handleInputChange}
             />
         </div>
         )

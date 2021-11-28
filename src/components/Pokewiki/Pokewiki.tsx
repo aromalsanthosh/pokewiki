@@ -7,15 +7,16 @@ import './Pokewiki.css'
 
 interface PokeWikiProps {
     searchedPokemons: PokemonSchema[];
+    onInputChange:(inputValue: string) => void;
 }
 
-const Pokewiki = ({ searchedPokemons } : PokeWikiProps) =>{
+const Pokewiki = ({ searchedPokemons,onInputChange } : PokeWikiProps) =>{
 
     //console.log(searchedPokemons);
     return (
         <div className="pokewiki-container">
             <div className="pokelist-container">
-                <SearchBox/>
+                <SearchBox onInputChange={onInputChange}/>
                 <PokeList
                 searchedPokemons = {searchedPokemons}
                 />
