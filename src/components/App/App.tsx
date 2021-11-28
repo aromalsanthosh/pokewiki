@@ -82,6 +82,19 @@ class App extends React.Component<any, AppState> {
         
     }
 
+    handleClick = (pokemonName: string)=>{
+        const {allPokemons} = this.state;
+
+        // find selected pokemon from allpokemons
+        const selectedPokemon = allPokemons.find(
+            (pokemon: PokemonSchema) => pokemon.name === pokemonName
+
+        )
+        //update state
+
+        this.setState({selectedPokemon});
+    }
+
     render(){
         return(
         <div className="App">
@@ -89,7 +102,9 @@ class App extends React.Component<any, AppState> {
             <img className="logo" src={PokeLogo} alt="logo" />
             <Pokewiki
                 searchedPokemons={this.state.searchedPokemons}
+                selectedPokemon = {this.state.selectedPokemon}
                 onInputChange = {this.handleInputChange}
+                onPokemonClick = {this.handleClick}
             />
         </div>
         )

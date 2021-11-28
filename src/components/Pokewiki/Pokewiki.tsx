@@ -7,10 +7,12 @@ import './Pokewiki.css'
 
 interface PokeWikiProps {
     searchedPokemons: PokemonSchema[];
+    selectedPokemon: PokemonSchema | undefined;
     onInputChange:(inputValue: string) => void;
+    onPokemonClick: (pokemonName: string) => void;
 }
 
-const Pokewiki = ({ searchedPokemons,onInputChange } : PokeWikiProps) =>{
+const Pokewiki = ({ searchedPokemons,onInputChange, selectedPokemon, onPokemonClick } : PokeWikiProps) =>{
 
     //console.log(searchedPokemons);
     return (
@@ -19,10 +21,11 @@ const Pokewiki = ({ searchedPokemons,onInputChange } : PokeWikiProps) =>{
                 <SearchBox onInputChange={onInputChange}/>
                 <PokeList
                 searchedPokemons = {searchedPokemons}
+                onPokemonClick = {onPokemonClick}
                 />
             </div> 
             <div className="pokesearchresult-container">
-                <PokeSearchResults/>
+                <PokeSearchResults selectedPokemon={selectedPokemon}/>
             </div>
         </div>
     )
